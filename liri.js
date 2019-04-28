@@ -2,61 +2,50 @@
 require("dotenv").config();
 
 // Project variables
+//===============================================//
 var keys = require("./keys.js");
 var fs = require("fs");
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
 var inquirer = require("inquirer");
-var moment = require ("moment");
+var moment = require("moment");
+
 
 // Process arguments
+//===============================================//
 var command = process.argv[2];
 console.log(process.argv[2]);
 var userResponse = process.argv[3];
 console.log(process.argv[3]);
 
-
 // If statements for commands
+//===============================================//
 if (command === 'concert-this') {
   concertThis(userResponse);
 } else {
-  concertThis("Radiohead");
+  concertThis("Beck");
 }
 
 
 
 // All functions
-
+//===============================================//
 // Concert this
 function concertThis(userResponse) {
 
-// Axios call
-  axios.get("https://rest.bandsintown.com/artists/" + userResponse + "/events?app_id=codingbootcamp")
-  .then( function(response) {
-      console.log(response);
+  // Axios call
+  axios.get("https://rest.bandsintown.com/artists/" + userResponse + "/events?app_id=codingbootcamp").then(function (response) {
 
-      for (var i = 0; i < response.data.length; i++) {
+    // Variable for concert results
+    var concertResults = response.data[0];
+    // console.log(concertResults);
 
-        console.log("Venue: " + response[i].venue.name);
+    // Variable for moment
+    var time = moment(concertResults.datetime).format('MM/DD/YYYY')
 
-        // Saves date and time response in a variable
-        var dateTime = response[i].dateTime;
+    console.log("\nVenue Name: " + concertResults.venue.name + "\nVenue Location: " + concertResults.venue.city + "\nDate of Event: " + time);
 
-        // Splits the date and time
-        var dateTimeArr = dateTime.split('T'); 
+  });
 
-        // Variable for concert results 
-        var concertResults = 
-
-        "\nVenue Name: " + response[i].venue.name +
-        "\nVenue Location: " + response[i].venue.city +
-        "\nDate of Event: " + moment(dateTimeArr[0], "YYYY-DD-MM").format("DD/MM/YYYY");
-
-        console.log(concertResults);
-      };
-
-  })
-
-}
-
+};
