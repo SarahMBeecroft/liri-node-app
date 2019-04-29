@@ -35,6 +35,14 @@ if (command === 'spotify-this-song') {
   spotifyThis("The Sign");
 }
 
+// movie-this
+if (command === 'movie-this') {
+  movieThis(userResponse);
+} else {
+  movieThis("Mr. Nobody");
+}
+
+
 // All functions
 //===============================================//
 // Concert this
@@ -57,23 +65,49 @@ function concertThis(userResponse) {
 
 };
 
+
 // Spotify this song
 //===============================================//
 function spotifyThis(userResponse) {
  
   spotify.search({ type: 'track', query: userResponse}, function(err, data) {
+
     if (err) {
       return console.log('Error occurred: ' + err);
     }else {
       for (var i = 0; i < data.tracks.items.length; i++){
 
       // Setting artist index to 0 returns all results, still need to find a way to get preview link
-      console.log("Artist: " + data.tracks.items[i].artists[0].name + "\nSong Name: "
-      + data.tracks.items[i].name + "\nPreview Link: " + data.tracks.items[i].link + "\nAlbum Name: " + data.tracks.items[i].album.name + "\n");
-      
+      console.log("Artist: " + data.tracks.items[i].artists[0].name);
+      console.log("Song Name: " + data.tracks.items[i].name);
+      console.log("Preview Link: " +  data.tracks.items[i].link);
+      console.log("Album Name: " + data.tracks.items[i].album.name + "\n");
       };
     }
    
   });
 
+};
+
+
+// Movie this
+//===============================================//}
+function movieThis(userResponse) {
+
+  // Axios call
+  axios.get("http://www.omdbapi.com/?t=" + userResponse + "&y=&plot=short&apikey=trilogy").then(function (response) {
+
+  // Variable for concert results
+  var movieResults = response.data;
+  // console.log(movieResults);
+  console.log("Movie Title: " + movieResults.Title);
+  console.log("Release Year: " + movieResults.Year);
+  console.log("IMDB Rating: " + movieResults.imdbRating);
+  console.log("Rotten Tomatoes Rating: " + movieResults.Ratings.Source(["Rotten Tomatoes"]));
+  console.log("Country: " + movieResults.Country);
+  console.log("Language: " + movieResults.Language);
+  console.log("Plot: " + movieResults.Plot);
+  console.log("Actors: " + movieResults.Actors + "\n");
+
+  });
 };
