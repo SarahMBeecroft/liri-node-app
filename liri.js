@@ -22,26 +22,37 @@ console.log(process.argv.slice(3).join(" "));
 // If statements for commands
 //===============================================//
 // concert-this
-if (command === 'concert-this') {
-  concertThis(userResponse);
-} else {
-  concertThis("Beck");
-}
+// if (command === 'concert-this') {
+//   concertThis(userResponse);
 
-// spotify-this-song
-if (command === 'spotify-this-song') {
-  spotifyThis(userResponse);
-} else {
-  spotifyThis("The Sign");
-}
+// } else if (command === 'spotify-this-song') {
+//   spotifyThis(userResponse);
 
-// movie-this
-if (command === 'movie-this') {
-  movieThis(userResponse);
-} else {
-  movieThis("Mr. Nobody");
-}
+// } else (command === 'movie-this'); {
+//   movieThis(userResponse);
+// }
 
+
+begin(command, userResponse);
+
+function begin(command, userResponse){
+	switch(command){
+	case 'concert-this':
+		concertThis(userResponse);
+	break;
+
+	case "spotify-this-song":
+		spotifyThis(userResponse);
+	break;
+
+	case "movie-this":
+		movieThis(userResponse);
+	break;
+
+	default:
+	break;
+	}
+}
 
 // All functions
 //===============================================//
@@ -103,7 +114,7 @@ function movieThis(userResponse) {
   console.log("Movie Title: " + movieResults.Title);
   console.log("Release Year: " + movieResults.Year);
   console.log("IMDB Rating: " + movieResults.imdbRating);
-  console.log("Rotten Tomatoes Rating: " + movieResults.Ratings.Source(["Rotten Tomatoes"]));
+  console.log("Rotten Tomatoes Rating: " + movieResults.Ratings[1].Value);
   console.log("Country: " + movieResults.Country);
   console.log("Language: " + movieResults.Language);
   console.log("Plot: " + movieResults.Plot);
@@ -111,3 +122,4 @@ function movieThis(userResponse) {
 
   });
 };
+
