@@ -19,20 +19,9 @@ console.log(process.argv[2]);
 var userResponse = process.argv.slice(3).join(" "); // slice allows for space
 console.log(process.argv.slice(3).join(" "));
 
-// If statements for commands
+
+// Switch statements for commands
 //===============================================//
-// concert-this
-// if (command === 'concert-this') {
-//   concertThis(userResponse);
-
-// } else if (command === 'spotify-this-song') {
-//   spotifyThis(userResponse);
-
-// } else (command === 'movie-this'); {
-//   movieThis(userResponse);
-// }
-
-
 begin(command, userResponse);
 
 function begin(command, userResponse){
