@@ -25,21 +25,21 @@ console.log(process.argv.slice(3).join(" "));
 begin(command, userResponse);
 
 function begin(command, userResponse){
-	switch(command){
-	case 'concert-this':
-		concertThis(userResponse);
-	break;
+	  switch(command){
+	  case 'concert-this':
+      concertThis(userResponse);
+	  break;
 
-	case "spotify-this-song":
-		spotifyThis(userResponse);
-	break;
+	  case "spotify-this-song":
+		  spotifyThis(userResponse);
+	  break;
 
-	case "movie-this":
-		movieThis(userResponse);
-	break;
+	  case "movie-this":
+		  movieThis(userResponse);
+	  break;
 
-	default:
-	break;
+	  default:
+	  break;
 	}
 }
 
@@ -48,6 +48,11 @@ function begin(command, userResponse){
 // Concert this
 //===============================================//
 function concertThis(userResponse) {
+
+  // If statement to let user response = 'Beck' if no input
+  if (userResponse === '') {
+    userResponse = 'Beck'
+  }
 
   // Axios call
   axios.get("https://rest.bandsintown.com/artists/" + userResponse + "/events?app_id=codingbootcamp").then(function (response) {
@@ -69,6 +74,11 @@ function concertThis(userResponse) {
 // Spotify this song
 //===============================================//
 function spotifyThis(userResponse) {
+
+  // If statement to let user response = 'The Sign' if no input
+  if (userResponse === '') {
+    userResponse = 'The Sign Ace of Base'
+  }
  
   spotify.search({ type: 'track', query: userResponse}, function(err, data) {
 
@@ -93,6 +103,11 @@ function spotifyThis(userResponse) {
 // Movie this
 //===============================================//}
 function movieThis(userResponse) {
+
+  // If statement to let user response = 'Mr Nobody' if no input
+  if (userResponse === '') {
+    userResponse = 'Mr Nobody'
+  }
 
   // Axios call
   axios.get("http://www.omdbapi.com/?t=" + userResponse + "&y=&plot=short&apikey=trilogy").then(function (response) {
