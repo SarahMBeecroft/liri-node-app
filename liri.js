@@ -5,7 +5,7 @@ require("dotenv").config();
 //===============================================//
 var keys = require("./keys.js");
 var fs = require("fs");
-var Spotify = require('node-spotify-api');
+var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
 var inquirer = require("inquirer");
@@ -26,7 +26,7 @@ begin(command, userResponse);
 
 function begin(command, userResponse){
 	  switch(command){
-	  case 'concert-this':
+	  case "concert-this":
       concertThis(userResponse);
 	  break;
 
@@ -54,8 +54,8 @@ function begin(command, userResponse){
 function concertThis(userResponse) {
 
   // If statement to let user response = 'Beck' if no input
-  if (userResponse === '') {
-    userResponse = 'Beck'
+  if (userResponse === "") {
+    userResponse = "Beck"
   }
 
   // Axios call
@@ -66,7 +66,7 @@ function concertThis(userResponse) {
     // console.log(concertResults);
 
     // Variable for moment
-    var time = moment(concertResults.datetime).format('MM/DD/YYYY')
+    var time = moment(concertResults.datetime).format("MM/DD/YYYY")
 
     console.log("\nVenue Name: " + concertResults.venue.name + "\nVenue Location: " + concertResults.venue.city + "\nDate of Event: " + time);
 
@@ -80,8 +80,8 @@ function concertThis(userResponse) {
 function spotifyThis(userResponse) {
 
   // If statement to let user response = 'The Sign' if no input
-  if (userResponse === '') {
-    userResponse = 'The Sign Ace of Base'
+  if (userResponse === "") {
+    userResponse = "The Sign Ace of Base"
   }
  
   spotify.search({ type: 'track', query: userResponse}, function(err, data) {
@@ -103,12 +103,12 @@ function spotifyThis(userResponse) {
 
 
 // Movie this
-//===============================================//}
+//===============================================//
 function movieThis(userResponse) {
 
   // If statement to let user response = 'Mr Nobody' if no input
-  if (userResponse === '') {
-    userResponse = 'Mr Nobody'
+  if (userResponse === "") {
+    userResponse = "Mr Nobody"
   }
 
   // Axios call

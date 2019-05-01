@@ -18,7 +18,7 @@ LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for mov
    
 ## Screenshots
 
-### Switch Statements
+### Process Arguments and Switch Statements
 ![switch statements screenshot](/images/switch.PNG)
 
 ### spotify-this-song
