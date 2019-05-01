@@ -37,6 +37,10 @@ function begin(command, userResponse){
 	  case "movie-this":
 		  movieThis(userResponse);
 	  break;
+    
+    case "do-what-it-says":
+    doWhatItSays();
+    break;
 
 	  default:
 	  break;
@@ -87,10 +91,8 @@ function spotifyThis(userResponse) {
     }else {
       for (var i = 0; i < data.tracks.items.length; i++){
 
-      // Setting artist index to 0 returns all results, still need to find a way to get preview link
       console.log("Artist: " + data.tracks.items[i].artists[0].name);
       console.log("Song Name: " + data.tracks.items[i].name);
-      console.log("Preview Link: " +  data.tracks.items[i].link);
       console.log("Album Name: " + data.tracks.items[i].album.name + "\n");
       };
     }
@@ -127,3 +129,19 @@ function movieThis(userResponse) {
   });
 };
 
+
+// Do what it says
+//===============================================//
+function doWhatItSays(){
+  fs.readFile("random.txt", "UTF8", function (err, data) {
+    
+    // Console logs error if any
+    if (err) {
+    return console.log(err);
+    }
+
+    var dataArr = data.split(", ")
+    console.log(dataArr);
+    begin(dataArr[0], dataArr[1]);
+  })
+}
