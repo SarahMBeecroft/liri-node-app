@@ -8,16 +8,15 @@ var fs = require("fs");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 var axios = require("axios");
-var inquirer = require("inquirer");
 var moment = require("moment");
 
 
 // Process arguments
 //===============================================//
 var command = process.argv[2];
-console.log(process.argv[2]);
+// console.log(process.argv[2]);
 var userResponse = process.argv.slice(3).join(" "); // slice allows for space
-console.log(process.argv.slice(3).join(" "));
+// console.log(process.argv.slice(3).join(" "));
 
 
 // Switch statements for commands
@@ -140,8 +139,11 @@ function doWhatItSays(){
     return console.log(err);
     }
 
-    var dataArr = data.split(", ")
+    // Splits data between comma
+    var dataArr = data.split(",")
     console.log(dataArr);
     begin(dataArr[0], dataArr[1]);
   })
 }
+
+
