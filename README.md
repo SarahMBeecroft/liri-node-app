@@ -34,8 +34,8 @@ LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for mov
 ![read random.txt function screenshot](/images/logo.PNG)
 
 
-## Video
+## Video Walkthrough
 (Apologies for the mic interference!)
-![video](/images/liri.mp4)
+Link: https://drive.google.com/open?id=12s58T2GuDE2Ve3sWzcFLG6uTzhDsQTHp
 
 
